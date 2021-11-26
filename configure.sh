@@ -40,17 +40,3 @@ defaults write com.apple.screencapture location ~/Downloads
 
 # Clock
 defaults write com.apple.menuextra.clock DateFormat -string "M\u6708d\u65e5(EEE)  H:mm:ss"
-
-# Keyboard
-## Remap capslock to control
-keyboard_vid=$(ioreg -n 'Apple Internal Keyboard / Trackpad' -r | grep -E 'idVendor' | awk '{ print $4 }' | head -1)
-keyboard_pid=$(ioreg -n 'Apple Internal Keyboard / Trackpad' -r | grep -E 'idProduct' | awk '{ print $4 }' | head -1)
-keyboardid="${keyboard_vid}-${keyboard_pid}-0"
-defaults -currentHost write -g com.apple.keyboard.modifiermapping.${keyboardid} -array-add '
-<dict>
-  <key>HIDKeyboardModifierMappingDst</key>
-  <integer>30064771296</integer>
-  <key>HIDKeyboardModifierMappingSrc</key>
-  <integer>30064771129</integer>
-</dict>
-'
